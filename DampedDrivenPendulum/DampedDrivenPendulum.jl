@@ -29,8 +29,6 @@ tspan = (t_start, t_end) # NOTE: passed into ODEProblem
 u0 = [θ_0, ω_0] # NOTE: passed into ODEProblem; order persists in the ODEFunction and ODESolution
 
 # Define the function that stores our system of equations.
-# - It must be constructed as an ODEFunction Type
-# - It will be called within every iteration of the numerical method performed by solve()
 function pendulum!(du, u, p, t)
 
     # Rename states for clarity
@@ -50,18 +48,12 @@ function pendulum!(du, u, p, t)
     du[1] = ω
     du[2] = -3g / (2l) * sin(θ) - 3b / (m * l^2) * θ + 3 / (m * l^2) * M(t)
 
-    # Print to get a sense of how this function is used by solve!
-    print("[time $t] du:")
-    println(du)
-
 end
 
 # Build the ODE problem
-# Return Type: ODEProblem
 prob = ODEProblem(pendulum!, u0, tspan, p)
 
 # Solve the ODE problem by specifying a numerical method
-# Return Type: ODESolution
 # NOTE: by passing `save_everystep=true`, it is possible to animate the solution with 
 # `animate(solution, idxs=(1,2))` (or any other indexes you're interested in...)
 solution = solve(prob, RK4(), save_everystep=true)
