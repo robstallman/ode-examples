@@ -12,11 +12,17 @@ using Plots
 l = 1.0                  # length [m]
 m = 1.0                  # mass [kg]
 g = 9.81                 # gravitational acceleration [m/s^2]
-a = 0.1                  # external torque amplitude [Nm]
-Ω = 5.0                  # external torque frequency [rad/s]
-M = t -> a * sin(Ω * t)  # external torque [Nm]
 b = 1.0                  # damping coefficient [kg * m^2 * s^-1]
-p = [l, m, g, M, b]
+a = 0.1                  # driving torque amplitude [Nm]
+Ω = 5.0                  # driving torque frequency [rad/s]
+M = t -> a * sin(Ω * t)  # driving torque [Nm]
+# NOTE: The driving term is defined using an anonymous function here for compactness, but a 
+# function name is still required so that the function can be evaluated at each timestep within the
+# ODEFunction. Alternatively, the driving term could be defined as:
+# function M(t)
+#     return a * sin(Ω * t)
+# end
+p = [l, m, g, b, M]
 
 # Define time range to solve
 t_start = 0.0  # [s]
@@ -37,8 +43,8 @@ function pendulum!(du, u, p, t)
     l = p[1]
     m = p[2]
     g = p[3]
-    M = p[4]
-    b = p[5]
+    b = p[4]
+    M = p[5]
 
     # Define the differential equations
     #  du[1] = dθ/dt = ω
