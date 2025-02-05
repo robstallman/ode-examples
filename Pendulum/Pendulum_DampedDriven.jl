@@ -44,7 +44,7 @@ function pendulum!(du, u, p, t)
     #  du[1] = dθ/dt = ω
     #  du[2] = dω/dt = -3g/(2l) sin[θ(t)] - 3b/(ml^2)ω(t) + 3/(ml^2)M(t)
     du[1] = ω
-    du[2] = -3g / (2l) * sin(θ) - 3b / (m * l^2) * θ + 3 / (m * l^2) * M(t)
+    du[2] = -3g / (2l) * sin(θ) - 3b / (m * l^2) * ω + 3 / (m * l^2) * M(t)
 
 end
 
