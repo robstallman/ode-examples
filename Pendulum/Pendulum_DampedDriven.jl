@@ -68,6 +68,9 @@ p1 = plot(solution,
     label=["θ [rad]" "ω [rad/s]"]
 )
 
+# Add a trace to the plot for the driving torque
+plot!(M, label="Driving Torque [Nm]")
+
 # Plot the time-domain trajectory of the state variables on subplots
 p2 = plot(solution,
     layout=(2, 1),
