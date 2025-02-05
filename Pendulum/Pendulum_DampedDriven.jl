@@ -76,7 +76,7 @@ p2 = plot(solution,
 p3 = plot(solution,
     idxs=(1, 2),
     title="Phase Portrait: Angular Velocity vs Deflection",
-    label=["(θ [rad], ω [rad/s])"],
+    label="(θ [rad], ω [rad/s])",
     xlabel="Angular Deflection [rad]",
     ylabel="Angular Velocity [rad/s]"
 )
