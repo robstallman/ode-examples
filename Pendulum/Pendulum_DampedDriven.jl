@@ -24,8 +24,8 @@ t_end = 10.0   # [s]
 tspan = (t_start, t_end)
 
 # Define initial conditions
-θ_0 = 0.01  # initial angular deflection [rad]
-ω_0 = 0.0   # initial angular velocity [rad/s]
+θ_0 = deg2rad(45)   # initial angular deflection [rad]
+ω_0 = 0.0           # initial angular velocity [rad/s]
 u0 = [θ_0, ω_0]
 
 # Define the function that stores our system of equations.
